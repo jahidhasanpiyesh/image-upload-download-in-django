@@ -12,3 +12,6 @@ def home(req):
     img = Image.objects.all() # Fetch all Image objects from the database.
     return render(req, 'home/home.html', {'img':img, 'form': form}) 
 
+
+def signup(req):
+    return render(req, 'home/signup.html')
