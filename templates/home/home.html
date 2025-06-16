@@ -15,9 +15,9 @@
     />
 
     <!-- Custom CSS -->
-    {% block link %} {% endblock %}
+    {% block link %}{% endblock %}
 
-    <!-- custom title -->
+    <!-- Page Title -->
     {% block title %}
     <title>Photo Uploader</title>
     {% endblock %}
@@ -25,36 +25,44 @@
 
   {% block body %}
   <body>
-    <!-- container sections  -->
-    <div class="container">
-      <div class="py-5 text-center bg-secondary text-white">
-        <h1 class="mb-3">Photo Uploader</h1>
+    <!-- Full Page Container -->
+    <div class="container position-relative">
+      <!-- Sign-Up Button (fixed top-right inside container) -->
+      <div class="position-absolute" style="top: 20px; right: 20px; z-index: 1050;">
+        <a href="{% url 'signup' %}" class="btn btn-outline-light btn-sm">
+          Sign Up
+        </a>
+      </div>
 
+      <!-- Uploader Section -->
+      <div class="py-5 text-center bg-secondary text-white rounded">
+        <h1 class="mb-3">Photo Uploader</h1>
         <form
           action=""
           method="post"
           enctype="multipart/form-data"
           class="d-flex justify-content-center align-items-center gap-2 flex-wrap"
         >
-          {% csrf_token %} {{ form }}
+          {% csrf_token %}
+          {{ form }}
           <input type="submit" class="btn btn-danger" value="Upload" />
         </form>
       </div>
 
+      <!-- Image Gallery -->
       <div class="row py-4">
         {% for x in img %}
-        <div class="col-sm-4">
-          <div class="card m-2">
+        <div class="col-sm-6 col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
             <img
               src="{{ x.photo.url }}"
-              alt=""
+              alt="Uploaded Photo"
               class="card-img-top"
-              height="200px"
+              style="object-fit: cover; height: 200px;"
             />
             <div class="card-footer">
               <small class="text-muted">{{ x.date }}</small>
               <br />
-              <!-- Download Button -->
               <a
                 href="{{ x.photo.url }}"
                 download
@@ -65,14 +73,15 @@
             </div>
           </div>
         </div>
+        {% empty %}
+        <p class="text-center">No photos uploaded yet.</p>
         {% endfor %}
       </div>
     </div>
-    <!-- End of container sections -->
+    <!-- End of Main Container -->
 
-    <!-- Footer Include -->
-    <!-- {% block footer %}
-    {% endblock %} -->
+    <!-- Optional Footer -->
+    {% block footer %}{% endblock %}
 
     <!-- Bootstrap JS -->
     <script
