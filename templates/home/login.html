@@ -20,6 +20,7 @@
         <a href="{% url 'home' %}" class="btn btn-secondary">&larr; Back to Home</a>
     </div>
 
+    {"block login_form"}
     <!-- Hidden checkbox for toggling between login and signup forms -->
     <input type="checkbox" id="check">
 
@@ -39,7 +40,6 @@
                 <input type="button" class="button" value="Login">
             </form>
         </form><!-- Link to toggle to Signup form -->
-
     
         <div class="signup">
             <span class="signup">
@@ -49,6 +49,7 @@
             </span>
         </div>
     </div>
+    {% endblock}
 
     <!-- Signup Form Section -->
     <div class="registration form">
