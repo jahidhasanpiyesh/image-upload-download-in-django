@@ -1,25 +1,38 @@
 {% extends 'home/login.html' %}
-{% block users %}
-    <!-- Signup Form Section -->
-    <div class="registration form">
-        <header>Signup</header>
-        <form action="#">
-            <!-- Email Input -->
-            <input type="text" placeholder="Enter your email">
-            <!-- Create Password -->
-            <input type="password" placeholder="Create a password">
-            <!-- Confirm Password -->
-            <input type="password" placeholder="Confirm your password">
-            <!-- Signup Button -->
-            <input type="button" class="button" value="Signup">
-        </form>
+{% load static %}
+{% block link %}
+<!-- Linking external CSS for styling -->
+<link rel="stylesheet" href="{% static 'home/style.css' %}" />
+{% endblock %}
+{% block title %}
+<!-- Page title -->
+<title>Sign-Up</title>
+{% endblock %}
 
-        <!-- Link to toggle back to Login form -->
-        <div class="signup">
-            <span class="signup">
-                Already have an account?
-                <a href="{% url 'login' %}">Login</a>
-            </span>
-        </div>
+{% block users %}
+<!-- Signup Form Section -->
+<div class="container">
+  <div class="registration form">
+    <header>Signup</header>
+    <form method="POST" action="#">
+      {% csrf_token %}
+      <!-- Email Input -->
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <!-- Create Password -->
+      <input type="password" name="password1" placeholder="Create a password" required>
+      <!-- Confirm Password -->
+      <input type="password" name="password2" placeholder="Confirm your password" required>
+      <!-- Signup Button -->
+      <input type="submit" class="button" value="Signup">
+    </form>
+
+    <!-- Link to toggle back to Login form -->
+    <div class="signup">
+      <span class="signup">
+        Already have an account?
+        <a href="{% url 'login' %}">Login</a>
+      </span>
     </div>
+  </div>
+</div>
 {% endblock %}
