@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-</body>
-</html>
+{% extends 'home/login.html' %}
+{% block users %}
+    <!-- Signup Form Section -->
+    <div class="registration form">
+        <header>Signup</header>
+        <form action="#">
+            <!-- Email Input -->
+            <input type="text" placeholder="Enter your email">
+            <!-- Create Password -->
+            <input type="password" placeholder="Create a password">
+            <!-- Confirm Password -->
+            <input type="password" placeholder="Confirm your password">
+            <!-- Signup Button -->
+            <input type="button" class="button" value="Signup">
+        </form>
+
+        <!-- Link to toggle back to Login form -->
+        <div class="signup">
+            <span class="signup">
+                Already have an account?
+                <a href="{% url 'login' %}">Login</a>
+            </span>
+        </div>
+    </div>
+{% endblock %}

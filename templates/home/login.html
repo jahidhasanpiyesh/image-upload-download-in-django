@@ -23,6 +23,7 @@
     <!-- Hidden checkbox for toggling between login and signup forms -->
     <input type="checkbox" id="check">
 
+    {% block users %}
     <!-- Login Form Section -->
     <div class="login form">
         <header>Login</header>
@@ -42,33 +43,10 @@
             <span class="signup">
                 Don't have an account?
                 <!-- This label triggers the checkbox to show the signup form -->
-                <label for="check">Signup</label>
+                <a href="{% url 'signup' %}">Signup</a>
             </span>
         </div>
-    </div>
-
-    <!-- Signup Form Section -->
-    <div class="registration form">
-        <header>Signup</header>
-        <form action="#">
-            <!-- Email Input -->
-            <input type="text" placeholder="Enter your email">
-            <!-- Create Password -->
-            <input type="password" placeholder="Create a password">
-            <!-- Confirm Password -->
-            <input type="password" placeholder="Confirm your password">
-            <!-- Signup Button -->
-            <input type="button" class="button" value="Signup">
-        </form>
-
-        <!-- Link to toggle back to Login form -->
-        <div class="signup">
-            <span class="signup">
-                Already have an account?
-                <!-- This label triggers the checkbox to show the login form -->
-                <label for="check">Login</label>
-            </span>
-        </div>
+    {% endblock %}
     </div>
 </div>
 
