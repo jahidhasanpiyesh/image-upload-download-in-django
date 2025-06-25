@@ -27,7 +27,8 @@
     <!-- Login Form Section -->
     <div class="login form">
         <header>Login</header>
-        <form action="#">
+        <form action="#" method="post">
+            {% csrf_token %}
             <!-- Email Input -->
             <input type="text" placeholder="Enter your email">
             <!-- Password Input -->
