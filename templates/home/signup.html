@@ -17,7 +17,7 @@
 
     <!-- Message Display -->
     {% if messages %}
-      <div class="alert-container">
+      <div class="alert-container alert-danger">
         {% for message in messages %}
           <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
             {{ message }}
