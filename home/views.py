@@ -29,18 +29,39 @@ def login_view(req):
             return redirect('login') 
     return render(req, 'home/login.html')
 
+# def signup(req):
+#     if req.method == 'POST':
+#         E_mail = req.POST.get('email') # Get the email from the POST request. 
+#         pass1 = req.POST.get('password1') # Get the first password from the POST request.
+#         pass2 = req.POST.get('password2') # Get the second password from the POST request.
+#         if pass1 != pass2: # Check if the two passwords match.
+#             messages.error(req, 'Passwords do not match!') # If the passwords do not match, show an error message.
+#             return redirect('signup')
+#         else:    
+#             my_user = User.objects.create_user(E_mail,pass1,pass2) # Create a new user with the provided email and password.
+#             my_user.save() # Save the new user to the database.
+#             messages.success(req, 'Account created successfully!') # Show a success message.
+#         return redirect('login')
+#     return render(req, 'home/signup.html')
+
 def signup(req):
     if req.method == 'POST':
-        E_mail = req.POST.get('email') # Get the email from the POST request. 
-        pass1 = req.POST.get('password1') # Get the first password from the POST request.
-        pass2 = req.POST.get('password2') # Get the second password from the POST request.
-        if pass1 != pass2: # Check if the two passwords match.
-            messages.error(req, 'Passwords do not match!') # If the passwords do not match, show an error message.
-            return redirect('signup')
-        else:    
-            my_user = User.objects.create_user(E_mail,pass1,pass2) # Create a new user with the provided email and password.
-            my_user.save() # Save the new user to the database.
-            messages.success(req, 'Account created successfully!') # Show a success message.
-        return redirect('login')
-    return render(req, 'home/signup.html')
+        username = req.POST.get('username')
+        email = req.POST.get('email')
+        pass1 = req.POST.get('password1')
+        pass2 = req.POST.get('password2')
 
+        if pass1 != pass2:
+            messages.error(req, 'Passwords do not match!')
+            return redirect('signup')
+
+        if User.objects.filter(username=username).exists():
+            messages.error(req, 'Username already taken!')
+            return redirect('signup')
+
+        my_user = User.objects.create_user(username=username, email=email, password=pass1)
+        my_user.save()
+        messages.success(req, 'Account created successfully!')
+        return redirect('login')
+    
+    return render(req, 'home/signup.html')
