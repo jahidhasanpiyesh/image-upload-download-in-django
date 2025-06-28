@@ -26,15 +26,26 @@
   <body>
     <!-- Full Page Container -->
     <div class="container position-relative">
+
       <!-- Sign-Up Button (fixed top-right inside container) -->
+       {% if request.user.is_authenticated %}
+
+       <div
+        class="position-absolute"
+        style="top: 20px; right: 20px; z-index: 1050">
+        <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">
+          Log Out
+        </a>
+      </div>
+      {% else %}
       <div
         class="position-absolute"
-        style="top: 20px; right: 20px; z-index: 1050"
-      >
+        style="top: 20px; right: 20px; z-index: 1050">
         <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">
           Sign-Up
         </a>
-      </div>
+      </div> 
+      {% endif %}
 
       <!-- Uploader Section -->
       <div class="py-5 text-center bg-secondary text-white rounded">

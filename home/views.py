@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import ImageForm
@@ -53,3 +53,8 @@ def signup(req):
         return redirect('login')
     
     return render(req, 'home/signup.html')
+
+def logout_view(req):
+    logout(req)
+    messages.success(req, 'Logged out successfully!')
+    return redirect('login')
