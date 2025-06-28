@@ -39,15 +39,12 @@
         </div>
         {% endif %}
         
+        <!-- Login Form -->
+        <!-- The form submits to the same URL, handled by the view -->
         <form action="#" method="post">
             {% csrf_token %}
-            <!-- Email Input -->
-            <input type="email" placeholder="Enter your email" name="email">
-            <!-- Password Input -->
-            <input type="password" placeholder="Enter your password" name="password">
-            <!-- Forgot password link -->
-            <a href="#">Forgot password?</a>
-            <!-- Login button -->
+            <input type="text" name="username" placeholder="Enter your username" required>
+            <input type="password" name="password" placeholder="Enter your password" required>
             <input type="submit" class="button" value="Login">
         </form>
 
