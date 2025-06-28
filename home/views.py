@@ -15,7 +15,7 @@ def home(req):
     img = Image.objects.all() # Fetch all Image objects from the database.
     return render(req, 'home/home.html', {'img':img, 'form': form}) 
 
-def login(req):
+def login_view(req):
     if req.method == 'POST':
         log_email = req.POST.get('email')
         log_pass = req.POST.get('password')
