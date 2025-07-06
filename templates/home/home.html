@@ -73,23 +73,21 @@
               <img src="{{ x.photo.url }}" alt="Image"
                    class="card-img-top" style="object-fit:cover; height:200px">
               <div class="card-body">
+
                 {% if request.user.is_authenticated %}
-                {% if x.caption %}
-                  <p class="card-text mb-1">{{ x.caption }}</p>
-                {% endif %}
-                {% endif %}
-                {% if x.keywords %}
+                  {% if x.caption %}
+                    <p class="card-text mb-1">{{ x.caption }}</p>
+                  {% endif %}
+                  {% if x.keywords %}
+                    <p class="card-text">
+                      <small class="text-muted">Keywords: {{ x.keywords }}</small>
+                    </p>
+                  {% endif %}
                   <p class="card-text">
-                    {% if request.user.is_authenticated %}
-                    <small class="text-muted">Keywords: {{ x.keywords }}</small>
-                    {% endif %}
+                    <small class="text-muted">Uploaded by: {{ x.user.username }}</small>
                   </p>
                 {% endif %}
-                <p class="card-text">
-                  {% if request.user.is_authenticated %}
-                  <small class="text-muted">Uploaded by: {{ x.user.username }}</small>
-                  {% endif %}
-                </p>
+                
               </div>
               <div class="card-footer d-flex justify-content-between align-items-center">
                 <small class="text-muted">{{ x.date|date:"M d, Y H:i" }}</small>
